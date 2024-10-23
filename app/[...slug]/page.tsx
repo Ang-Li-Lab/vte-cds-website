@@ -3,8 +3,8 @@
 import React from "react";
 import MainPage from "@/components/MainPage";
 
-const HomePage = () => {
+const CatchAllPage = () => {
   return <MainPage />;
 };
 
-export default HomePage;
+export default CatchAllPage;

@@ -1,0 +1,541 @@
+export interface Button {
+  id: string;
+  name: string;
+  value?: number;
+  color: string;
+  paramValue: string;
+}
+
+export interface Criterion {
+  id: string;
+  name: string;
+  scores: {
+    [scoreName: string]: {
+      paramName: string;
+      buttonsOrientation: "horizontal" | "vertical";
+      buttons: Button[];
+    };
+  };
+}
+
+export const riskCriteria: Criterion[] = [
+  {
+    id: "cancer_site",
+    name: "Cancer site/histology",
+    scores: {
+      khorana: {
+        paramName: "d",
+        buttonsOrientation: "vertical",
+        buttons: [
+          {
+            id: "unknown",
+            name: "Unknown",
+            value: 0,
+            color: "gray-500",
+            paramValue: "9",
+          },
+          {
+            id: "zero",
+            name: "Other",
+            value: 0,
+            color: "blue-500",
+            paramValue: "0",
+          },
+          {
+            id: "one",
+            name: "Lung, kidney, bladder, testicular, ovarian, uterine, aggresive lymphoma, cervical",
+            value: 1,
+            color: "red-900",
+            paramValue: "1",
+          },
+          {
+            id: "two",
+            name: "Pancreas, stomach",
+            value: 2,
+            color: "red-500",
+            paramValue: "2",
+          },
+        ],
+      },
+      ehrcat: {
+        paramName: "c",
+        buttonsOrientation: "vertical",
+        buttons: [
+          {
+            id: "unknown",
+            name: "Unknown",
+            value: 0,
+            color: "gray-500",
+            paramValue: "9",
+          },
+          {
+            id: "zero",
+            name: "Other",
+            value: 0,
+            color: "blue-500",
+            paramValue: "0",
+          },
+          {
+            id: "one",
+            name: "Colorectal",
+            value: 1,
+            color: "red-900",
+            paramValue: "1",
+          },
+          {
+            id: "two",
+            name: "Lung, kidney, bladder, testicular, ovarian, uterine, aggresive lymphoma, sarcoma, brain, myeloma, acute lymphocytic leukemia",
+            value: 2,
+            color: "red-700",
+            paramValue: "2",
+          },
+          {
+            id: "three",
+            name: "Pancreas, stomach, esophageal, biliary, gallbladder",
+            value: 3,
+            color: "red-500",
+            paramValue: "3",
+          },
+        ],
+      },
+    },
+  },
+  {
+    id: "bmi",
+    name: "Pretherapy BMI ≥35 kg/m<sup>2</sup>",
+    scores: {
+      khorana: {
+        paramName: "e",
+        buttonsOrientation: "horizontal",
+        buttons: [
+          {
+            id: "unknown",
+            name: "Unknown",
+            value: 0,
+            color: "gray-500",
+            paramValue: "9",
+          },
+          {
+            id: "no",
+            name: "No",
+            value: 0,
+            color: "blue-500",
+            paramValue: "0",
+          },
+          {
+            id: "yes",
+            name: "Yes",
+            value: 1,
+            color: "red-500",
+            paramValue: "1",
+          },
+        ],
+      },
+      ehrcat: {
+        paramName: "e",
+        buttonsOrientation: "horizontal",
+        buttons: [
+          {
+            id: "unknown",
+            name: "Unknown",
+            value: 0,
+            color: "gray-500",
+            paramValue: "9",
+          },
+          {
+            id: "no",
+            name: "No",
+            value: 0,
+            color: "blue-500",
+            paramValue: "0",
+          },
+          {
+            id: "yes",
+            name: "Yes",
+            value: 1,
+            color: "red-500",
+            paramValue: "1",
+          },
+        ],
+      },
+    },
+  },
+  {
+    id: "wbc",
+    name: "Pretherapy WBC >11 x 10<sup>9</sup>/L",
+    scores: {
+      khorana: {
+        paramName: "f",
+        buttonsOrientation: "horizontal",
+        buttons: [
+          {
+            id: "unknown",
+            name: "Unknown",
+            value: 0,
+            color: "gray-500",
+            paramValue: "9",
+          },
+          {
+            id: "no",
+            name: "No",
+            value: 0,
+            color: "blue-500",
+            paramValue: "0",
+          },
+          {
+            id: "yes",
+            name: "Yes",
+            value: 1,
+            color: "red-500",
+            paramValue: "1",
+          },
+        ],
+      },
+      ehrcat: {
+        paramName: "f",
+        buttonsOrientation: "horizontal",
+        buttons: [
+          {
+            id: "unknown",
+            name: "Unknown",
+            value: 0,
+            color: "gray-500",
+            paramValue: "9",
+          },
+          {
+            id: "no",
+            name: "No",
+            value: 0,
+            color: "blue-500",
+            paramValue: "0",
+          },
+          {
+            id: "yes",
+            name: "Yes",
+            value: 1,
+            color: "red-500",
+            paramValue: "1",
+          },
+        ],
+      },
+    },
+  },
+  {
+    id: "hgb",
+    name: "Pretherapy Hgb &lt;10 g/dL",
+    scores: {
+      khorana: {
+        paramName: "g",
+        buttonsOrientation: "horizontal",
+        buttons: [
+          {
+            id: "unknown",
+            name: "Unknown",
+            value: 0,
+            color: "gray-500",
+            paramValue: "9",
+          },
+          {
+            id: "no",
+            name: "No",
+            value: 0,
+            color: "blue-500",
+            paramValue: "0",
+          },
+          {
+            id: "yes",
+            name: "Yes",
+            value: 1,
+            color: "red-500",
+            paramValue: "1",
+          },
+        ],
+      },
+      ehrcat: {
+        paramName: "g",
+        buttonsOrientation: "horizontal",
+        buttons: [
+          {
+            id: "unknown",
+            name: "Unknown",
+            value: 0,
+            color: "gray-500",
+            paramValue: "9",
+          },
+          {
+            id: "no",
+            name: "No",
+            value: 0,
+            color: "blue-500",
+            paramValue: "0",
+          },
+          {
+            id: "yes",
+            name: "Yes",
+            value: 1,
+            color: "red-500",
+            paramValue: "1",
+          },
+        ],
+      },
+    },
+  },
+  {
+    id: "plt",
+    name: "Pretherapy Plt ≥350 x 10<sup>9</sup>/L",
+    scores: {
+      khorana: {
+        paramName: "h",
+        buttonsOrientation: "horizontal",
+        buttons: [
+          {
+            id: "unknown",
+            name: "Unknown",
+            value: 0,
+            color: "gray-500",
+            paramValue: "9",
+          },
+          {
+            id: "no",
+            name: "No",
+            value: 0,
+            color: "blue-500",
+            paramValue: "0",
+          },
+          {
+            id: "yes",
+            name: "Yes",
+            value: 1,
+            color: "red-500",
+            paramValue: "1",
+          },
+        ],
+      },
+      ehrcat: {
+        paramName: "h",
+        buttonsOrientation: "horizontal",
+        buttons: [
+          {
+            id: "unknown",
+            name: "Unknown",
+            value: 0,
+            color: "gray-500",
+            paramValue: "9",
+          },
+          {
+            id: "no",
+            name: "No",
+            value: 0,
+            color: "blue-500",
+            paramValue: "0",
+          },
+          {
+            id: "yes",
+            name: "Yes",
+            value: 1,
+            color: "red-500",
+            paramValue: "1",
+          },
+        ],
+      },
+    },
+  },
+  {
+    id: "stage",
+    name: "Advanced cancer stage (III-IV)",
+    scores: {
+      ehrcat: {
+        paramName: "i",
+        buttonsOrientation: "horizontal",
+        buttons: [
+          {
+            id: "unknown",
+            name: "Unknown",
+            value: 0,
+            color: "gray-500",
+            paramValue: "9",
+          },
+          {
+            id: "no",
+            name: "No",
+            value: 0,
+            color: "blue-500",
+            paramValue: "0",
+          },
+          {
+            id: "yes",
+            name: "Yes",
+            value: 1,
+            color: "red-500",
+            paramValue: "1",
+          },
+        ],
+      },
+    },
+  },
+  {
+    id: "vte_history",
+    name: "History of VTE lifetime",
+    scores: {
+      ehrcat: {
+        paramName: "k",
+        buttonsOrientation: "horizontal",
+        buttons: [
+          {
+            id: "unknown",
+            name: "Unknown",
+            value: 0,
+            color: "gray-500",
+            paramValue: "9",
+          },
+          {
+            id: "no",
+            name: "No",
+            value: 0,
+            color: "blue-500",
+            paramValue: "0",
+          },
+          {
+            id: "yes",
+            name: "Yes",
+            value: 1,
+            color: "red-500",
+            paramValue: "1",
+          },
+        ],
+      },
+    },
+  },
+  {
+    id: "paralysis_history",
+    name: "History of paralysis/immobility last 12 months",
+    scores: {
+      ehrcat: {
+        paramName: "j",
+        buttonsOrientation: "horizontal",
+        buttons: [
+          {
+            id: "unknown",
+            name: "Unknown",
+            value: 0,
+            color: "gray-500",
+            paramValue: "9",
+          },
+          {
+            id: "no",
+            name: "No",
+            value: 0,
+            color: "blue-500",
+            paramValue: "0",
+          },
+          {
+            id: "yes",
+            name: "Yes",
+            value: 1,
+            color: "red-500",
+            paramValue: "1",
+          },
+        ],
+      },
+    },
+  },
+  {
+    id: "hospitalization_history",
+    name: "Recent/current hospitalization >3 days last 3 months",
+    scores: {
+      ehrcat: {
+        paramName: "l",
+        buttonsOrientation: "horizontal",
+        buttons: [
+          {
+            id: "unknown",
+            name: "Unknown",
+            value: 0,
+            color: "gray-500",
+            paramValue: "9",
+          },
+          {
+            id: "no",
+            name: "No",
+            value: 0,
+            color: "blue-500",
+            paramValue: "0",
+          },
+          {
+            id: "yes",
+            name: "Yes",
+            value: 1,
+            color: "red-500",
+            paramValue: "1",
+          },
+        ],
+      },
+    },
+  },
+  {
+    id: "endocrine",
+    name: "Targeted or endocrine monotherapy (no cytotoxic chemo or checkpoint inhibitor)",
+    scores: {
+      ehrcat: {
+        paramName: "n",
+        buttonsOrientation: "horizontal",
+        buttons: [
+          {
+            id: "unknown",
+            name: "Unknown",
+            value: 0,
+            color: "gray-500",
+            paramValue: "9",
+          },
+          {
+            id: "no",
+            name: "No",
+            value: 0,
+            color: "blue-500",
+            paramValue: "0",
+          },
+          {
+            id: "yes",
+            name: "Yes",
+            value: -1,
+            color: "green-500",
+            paramValue: "1",
+          },
+        ],
+      },
+    },
+  },
+  {
+    id: "asian",
+    name: "East/South Asian or Pacific Islander",
+    scores: {
+      ehrcat: {
+        paramName: "m",
+        buttonsOrientation: "horizontal",
+        buttons: [
+          {
+            id: "unknown",
+            name: "Unknown",
+            value: 0,
+            color: "gray-500",
+            paramValue: "9",
+          },
+          {
+            id: "no",
+            name: "No",
+            value: 0,
+            color: "blue-500",
+            paramValue: "0",
+          },
+          {
+            id: "yes",
+            name: "Yes",
+            value: -1,
+            color: "green-500",
+            paramValue: "1",
+          },
+        ],
+      },
+    },
+  },
+];
