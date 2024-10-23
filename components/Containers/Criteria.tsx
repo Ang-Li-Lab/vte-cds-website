@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import RiskScore from "../RiskScore";
 import BleedingExclusion from "../BleedingExclusion";
 import TrialExclusion from "../TrialExclusion";
@@ -67,10 +67,10 @@ const Criteria: React.FC<CriteriaProps> = ({ queryString }) => {
           </Tabs.Trigger>
         </Tabs.List>
         <Tabs.Content value="risk-score" className="mt-4">
-          <RiskScore />
+          <Suspense fallback={null}><RiskScore /></Suspense>
         </Tabs.Content>
         <Tabs.Content value="bleeding-exclusion" className="mt-4">
-          <BleedingExclusion />
+          <Suspense fallback={null}><BleedingExclusion /></Suspense>
         </Tabs.Content>
         <Tabs.Content value="trial-exclusion" className="mt-4">
           <TrialExclusion />

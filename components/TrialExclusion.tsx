@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { sectionedCriteria, Section } from "@/lib/trialExclusion";
+import { sectionedCriteria } from "@/lib/trialExclusion";
 import ButtonGroup from "./ButtonGroup";
 
 interface SelectedValues {
