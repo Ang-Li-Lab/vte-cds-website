@@ -3,7 +3,7 @@
 import { Suspense } from "react";
 import MainPage from "@/components/MainPage";
 
-export default function HomePage() {
+export default function RecommPage() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <MainPage />

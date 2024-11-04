@@ -1,34 +1,29 @@
 "use client";
 
 import React, { useRef, useEffect } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import Criteria from "./Containers/Criteria";
-import Statistics from "./Containers/Statistics";
-import Summary from "./Containers/Summary";
+import { useSearchParams, usePathname } from "next/navigation";
+import Risk from "@/components/Containers/Risk";
+import Effect from "@/components/Containers/Effect";
+import Recomm from "@/components/Containers/Recomm";
 
 const MainPage = () => {
-  const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const criteriaRef = useRef<HTMLDivElement>(null);
-  const statisticsRef = useRef<HTMLDivElement>(null);
-  const summaryRef = useRef<HTMLDivElement>(null);
+  const riskRef = useRef<HTMLDivElement>(null);
+  const effectRef = useRef<HTMLDivElement>(null);
+  const recommRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const scrollToSection = () => {
-      if (pathname.startsWith("/criteria")) {
-        criteriaRef.current?.scrollIntoView({ behavior: "smooth" });
-      } else if (pathname.startsWith("/statistics")) {
-        statisticsRef.current?.scrollIntoView({ behavior: "smooth" });
-      } else if (pathname.startsWith("/summary")) {
-        summaryRef.current?.scrollIntoView({ behavior: "smooth" });
-      } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-    };
+    const section = pathname.replace("/", "") || "risk";
 
-    scrollToSection();
+    if (section.startsWith("risk")) {
+      riskRef.current?.scrollIntoView({ behavior: "smooth" });
+    } else if (section.startsWith("effect")) {
+      effectRef.current?.scrollIntoView({ behavior: "smooth" });
+    } else if (section.startsWith("recomm")) {
+      recommRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
   }, [pathname]);
 
   const getQueryString = () => {
@@ -38,14 +33,14 @@ const MainPage = () => {
 
   return (
     <div className="container mx-auto space-y-8">
-      <div ref={criteriaRef} className="scroll-mt-20">
-        <Criteria queryString={getQueryString()} />
+      <div ref={riskRef} id="risk" className="scroll-mt-20">
+        <Risk queryString={getQueryString()} />
       </div>
-      <div ref={statisticsRef} className="scroll-mt-20">
-        <Statistics queryString={getQueryString()} />
+      <div ref={effectRef} id="effect" className="scroll-mt-20">
+        <Effect queryString={getQueryString()} />
       </div>
-      <div ref={summaryRef} className="scroll-mt-20">
-        <Summary queryString={getQueryString()} />
+      <div ref={recommRef} id="recomm" className="scroll-mt-20">
+        <Recomm queryString={getQueryString()} />
       </div>
     </div>
   );
