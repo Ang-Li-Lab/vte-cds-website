@@ -35,9 +35,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
       className={`inline-flex ${isHorizontal ? "" : "flex-col"}`}
       value={selectedButtonId}
       onValueChange={(value) => {
-        if (value) {
-          onButtonClick(criterionId, value);
-        }
+        if (value) onButtonClick(criterionId, value);
       }}
     >
       {buttons.map((button, index) => {
@@ -48,25 +46,17 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
         const selectedClasses = `bg-${button.color} text-white`;
         const unselectedClasses = `bg-white text-${button.color}`;
 
-        let borderRadiusClasses = "";
-
-        if (isHorizontal) {
-          if (isFirst) {
-            borderRadiusClasses = "rounded-l-md";
-          } else if (isLast) {
-            borderRadiusClasses = "rounded-r-md -ml-px";
-          } else {
-            borderRadiusClasses = "-ml-px";
-          }
-        } else {
-          if (isFirst) {
-            borderRadiusClasses = "rounded-t-md";
-          } else if (isLast) {
-            borderRadiusClasses = "rounded-b-md -mt-px";
-          } else {
-            borderRadiusClasses = "-mt-px";
-          }
-        }
+        const borderRadiusClasses = isHorizontal
+          ? isFirst
+            ? "rounded-l-md"
+            : isLast
+              ? "rounded-r-md -ml-px"
+              : "-ml-px"
+          : isFirst
+            ? "rounded-t-md"
+            : isLast
+              ? "rounded-b-md -mt-px"
+              : "-mt-px";
 
         const classes = `${baseClasses} ${borderRadiusClasses} ${
           selectedButtonId === button.id ? selectedClasses : unselectedClasses

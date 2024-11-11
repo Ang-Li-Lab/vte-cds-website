@@ -6,15 +6,17 @@ export interface Button {
   paramValue: string;
 }
 
+export interface Score {
+  paramName: string;
+  buttonsOrientation: "horizontal" | "vertical";
+  buttons: Button[];
+}
+
 export interface Criterion {
   id: string;
   name: string;
   scores: {
-    [scoreName: string]: {
-      paramName: string;
-      buttonsOrientation: "horizontal" | "vertical";
-      buttons: Button[];
-    };
+    [scoreName: string]: Score;
   };
 }
 

@@ -1,46 +1,71 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
-import { useSearchParams, usePathname } from "next/navigation";
-import Risk from "@/components/Containers/Risk";
-import Effect from "@/components/Containers/Effect";
-import Recomm from "@/components/Containers/Recomm";
+import { useRef, useEffect, useCallback } from "react";
+import { useAppStore } from "@/store/useAppStore";
+import RiskContainer from "@/components/RiskContainer/Risk";
+import EffectContainer from "@/components/EffectContainer/Effect";
+import RecommContainer from "@/components/RecommContainer/Recomm";
+import { useSearchParams } from "next/navigation";
 
 const MainPage = () => {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const {
+    currentContainer,
+    isInitialized,
+    setContainer,
+    initializeStateFromUrl,
+  } = useAppStore();
 
   const riskRef = useRef<HTMLDivElement>(null);
   const effectRef = useRef<HTMLDivElement>(null);
   const recommRef = useRef<HTMLDivElement>(null);
 
+  const searchParams = useSearchParams();
+  const hasAutoScrolled = useRef(false);
+
   useEffect(() => {
-    const section = pathname.replace("/", "") || "risk";
-
-    if (section.startsWith("risk")) {
-      riskRef.current?.scrollIntoView({ behavior: "smooth" });
-    } else if (section.startsWith("effect")) {
-      effectRef.current?.scrollIntoView({ behavior: "smooth" });
-    } else if (section.startsWith("recomm")) {
-      recommRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (searchParams) {
+      initializeStateFromUrl(searchParams);
     }
-  }, [pathname]);
+  }, [searchParams, initializeStateFromUrl]);
 
-  const getQueryString = () => {
-    const params = new URLSearchParams(searchParams.toString());
-    return params.toString() ? `?${params.toString()}` : "";
-  };
+  useEffect(() => {
+    if (isInitialized && currentContainer && !hasAutoScrolled.current) {
+      hasAutoScrolled.current = true;
+      const refs: Record<string, React.RefObject<HTMLDivElement>> = {
+        risk: riskRef,
+        effect: effectRef,
+        recomm: recommRef,
+      };
+      refs[currentContainer]?.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [isInitialized, currentContainer]);
+
+  const handleScroll = useCallback(
+    (section: string) => {
+      setContainer(section);
+      const refs: Record<string, React.RefObject<HTMLDivElement>> = {
+        risk: riskRef,
+        effect: effectRef,
+        recomm: recommRef,
+      };
+      refs[section]?.current?.scrollIntoView({ behavior: "smooth" });
+    },
+    [setContainer],
+  );
 
   return (
     <div className="container mx-auto space-y-8">
       <div ref={riskRef} id="risk" className="scroll-mt-20">
-        <Risk queryString={getQueryString()} />
+        <RiskContainer onNext={() => handleScroll("effect")} />
       </div>
       <div ref={effectRef} id="effect" className="scroll-mt-20">
-        <Effect queryString={getQueryString()} />
+        <EffectContainer
+          onNext={() => handleScroll("recomm")}
+          onPrevious={() => handleScroll("risk")}
+        />
       </div>
       <div ref={recommRef} id="recomm" className="scroll-mt-20">
-        <Recomm queryString={getQueryString()} />
+        <RecommContainer onPrevious={() => handleScroll("effect")} />
       </div>
     </div>
   );
