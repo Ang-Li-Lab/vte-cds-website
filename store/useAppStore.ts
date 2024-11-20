@@ -288,7 +288,7 @@ const computeForScore = (
   selectedCriteria: { [criterionId: string]: string },
   scoreName: string,
 ): number => {
-  return riskCriteria.reduce((total, criterion) => {
+  const rawScore = riskCriteria.reduce((total, criterion) => {
     const criterionScore = criterion.scores[scoreName];
     if (criterionScore) {
       const selectedButtonId = selectedCriteria[criterion.id];
@@ -299,6 +299,17 @@ const computeForScore = (
     }
     return total;
   }, 0);
+
+  let min = 0;
+  let max = Infinity;
+
+  if (scoreName === "khorana") {
+    max = 3;
+  } else if (scoreName === "ehrcat") {
+    max = 5;
+  }
+
+  return Math.max(min, Math.min(max, rawScore));
 };
 
 const checkForBleedingExclusions = (bleedingSelections: {
