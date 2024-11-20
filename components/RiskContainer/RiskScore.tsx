@@ -39,11 +39,11 @@ const RiskScore: React.FC = () => {
             <th className="w-1/3 px-4 py-2">
               Khorana Score:{" "}
               <span className="text-red-500">{khoranaTotal}</span>
-              <span className="font-normal text-sm"> (always between 0 and 3)</span>
+              <span className="font-normal text-sm"> (restricted to 0-3)</span>
             </th>
             <th className="w-1/3 px-4 py-2">
               EHR-CAT Score: <span className="text-red-500">{ehrCatTotal}</span>
-              <span className="font-normal text-sm"> (always between 0 and 5)</span>
+              <span className="font-normal text-sm"> (restricted to 0-5)</span>
             </th>
           </tr>
         </thead>
