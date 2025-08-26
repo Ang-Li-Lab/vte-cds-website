@@ -4,7 +4,7 @@ import { useRef, useEffect, useCallback } from "react";
 import { useAppStore } from "@/store/useAppStore";
 import RiskContainer from "@/components/RiskContainer/Risk";
 import EffectContainer from "@/components/EffectContainer/Effect";
-import RecommContainer from "@/components/RecommContainer/Recomm";
+import ConsiderContainer from "@/components/ConsiderContainer/Consider";
 import { useSearchParams } from "next/navigation";
 
 const MainPage = () => {
@@ -17,7 +17,7 @@ const MainPage = () => {
 
   const riskRef = useRef<HTMLDivElement>(null);
   const effectRef = useRef<HTMLDivElement>(null);
-  const recommRef = useRef<HTMLDivElement>(null);
+  const considerRef = useRef<HTMLDivElement>(null);
 
   const searchParams = useSearchParams();
   const hasAutoScrolled = useRef(false);
@@ -34,7 +34,7 @@ const MainPage = () => {
       const refs: Record<string, React.RefObject<HTMLDivElement>> = {
         risk: riskRef,
         effect: effectRef,
-        recomm: recommRef,
+        consider: considerRef,
       };
       refs[currentContainer]?.current?.scrollIntoView({ behavior: "smooth" });
     }
@@ -46,7 +46,7 @@ const MainPage = () => {
       const refs: Record<string, React.RefObject<HTMLDivElement>> = {
         risk: riskRef,
         effect: effectRef,
-        recomm: recommRef,
+        consider: considerRef,
       };
       refs[section]?.current?.scrollIntoView({ behavior: "smooth" });
     },
@@ -60,12 +60,12 @@ const MainPage = () => {
       </div>
       <div ref={effectRef} id="effect" className="scroll-mt-20">
         <EffectContainer
-          onNext={() => handleScroll("recomm")}
+          onNext={() => handleScroll("consider")}
           onPrevious={() => handleScroll("risk")}
         />
       </div>
-      <div ref={recommRef} id="recomm" className="scroll-mt-20">
-        <RecommContainer onPrevious={() => handleScroll("effect")} />
+      <div ref={considerRef} id="consider" className="scroll-mt-20">
+        <ConsiderContainer onPrevious={() => handleScroll("effect")} />
       </div>
     </div>
   );

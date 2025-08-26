@@ -13,7 +13,7 @@ export default function ContactPage() {
         <h2 className="m-0 text-customBlue underline">Contact Us</h2>
       </div>
       <p>
-        You can contact us by visiting <a className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600" href="https://angli-lab.com" target="_blank">https://angli-lab.com</a>.
+        You can contact us by visiting <a className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600" href="https://angli-lab.com" target="_blank" rel="noopener">https://angli-lab.com</a>.
       </p>
     </div>
   );

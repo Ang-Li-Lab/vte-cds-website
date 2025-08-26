@@ -49,7 +49,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   currentTabs: {
     risk: "score",
     effect: "effect",
-    recomm: "recomm",
+    consider: "consider",
   },
   isInitialized: false,
 
@@ -203,7 +203,7 @@ export const useAppStore = create<AppState>((set, get) => ({
     const currentTabs: Record<string, string> = {
       risk: searchParams.get("riskTab") || "score",
       effect: searchParams.get("effectTab") || "effect",
-      recomm: searchParams.get("recommTab") || "recomm",
+      consider: searchParams.get("considerTab") || "consider",
     };
 
     let vteHistoryValue = null;

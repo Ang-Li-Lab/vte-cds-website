@@ -5,7 +5,7 @@ const AboutEhrCat: React.FC = () => {
     <div className="prose prose-neutral max-w-none dark:prose-invert">
       <h3>Short video summary</h3>
       <p>
-        <a href="https://www.youtube.com/watch?v=hTZdrAnHFIU" target="_blank">
+        <a href="https://www.youtube.com/watch?v=hTZdrAnHFIU" target="_blank" rel="noopener">
           Watch on YouTube
         </a>
       </p>
@@ -115,7 +115,7 @@ const AboutEhrCat: React.FC = () => {
 
         <dt>Patient race</dt>
         <dd>
-          Use the patient’s self-reported race. Apply the <a href="https://grants.nih.gov/grants/guide/notice-files/NOT-OD-15-089.html" target="_blank">NIH definition</a> for
+          Use the patient’s self-reported race. Apply the <a href="https://grants.nih.gov/grants/guide/notice-files/NOT-OD-15-089.html" target="_blank" rel="noopener">NIH definition</a> for
           Asian/Pacific Islander.
         </dd>
       </dl>
@@ -178,11 +178,6 @@ const AboutEhrCat: React.FC = () => {
           </code>
         </p>
       </details>
-
-
-
-
-
     </div>
   );
 };

@@ -3,14 +3,15 @@
 import React, { useCallback } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import { useAppStore } from "@/store/useAppStore";
-import RecommContent from "@/components/RecommContainer/RecommContent";
-import RecommReference from "@/components/RecommContainer/RecommReference";
+import ConsiderContent from "@/components/ConsiderContainer/ConsiderContent";
+import ConsiderGuidelines from "@/components/ConsiderContainer/ConsiderGuidelines";
+import ConsiderReferences from "@/components/ConsiderContainer/ConsiderReferences";
 
-interface RecommContainerProps {
+interface ConsiderContainerProps {
   onPrevious: () => void;
 }
 
-const RecommContainer: React.FC<RecommContainerProps> = ({ onPrevious }) => {
+const ConsiderContainer: React.FC<ConsiderContainerProps> = ({ onPrevious }) => {
   const {
     currentTabs,
     setTab,
@@ -20,7 +21,7 @@ const RecommContainer: React.FC<RecommContainerProps> = ({ onPrevious }) => {
     vteHistoryValue,
     acValue,
   } = useAppStore();
-  const containerName = "recomm";
+  const containerName = "consider";
   const currentTab = currentTabs[containerName];
 
   const handleTabChange = useCallback(
@@ -33,40 +34,49 @@ const RecommContainer: React.FC<RecommContainerProps> = ({ onPrevious }) => {
   };
 
   const copyLink = useCallback(() => {
-    const shareLink = generateShareableLink("recomm");
+    const shareLink = generateShareableLink("consider");
     navigator.clipboard.writeText(shareLink);
     alert("Link copied to clipboard!");
   }, [generateShareableLink]);
 
   return (
     <div className="bg-white rounded-lg p-6 shadow-md">
-      <h2 className="text-2xl font-semibold mb-4">Recommendation</h2>
+      <h2 className="text-2xl font-semibold mb-4">Consideration</h2>
       <Tabs.Root value={currentTab} onValueChange={handleTabChange}>
         <Tabs.List className="flex space-x-4 border-b">
           <Tabs.Trigger
-            value="recomm"
-            className={`pb-2 ${currentTab === "recomm" ? "border-b-2 border-blue-600" : ""}`}
+            value="consider"
+            className={`pb-2 ${currentTab === "consider" ? "border-b-2 border-blue-600 text-blue-600" : "text-gray-600 hover:text-gray-900"}`}
           >
-            Recommendation
+            Consideration
           </Tabs.Trigger>
-          {/* <Tabs.Trigger
-            value="reference"
-            className={`pb-2 ${currentTab === "reference" ? "border-b-2 border-blue-600" : ""}`}
+          <Tabs.Trigger
+            value="guidelines"
+            className={`pb-2 ${currentTab === "guidelines" ? "border-b-2 border-blue-600 text-blue-600" : "text-gray-600 hover:text-gray-900"}`}
           >
-            Reference
-          </Tabs.Trigger> */}
+            Guidelines
+          </Tabs.Trigger>
+          <Tabs.Trigger
+            value="references"
+            className={`pb-2 ${currentTab === "references" ? "border-b-2 border-blue-600 text-blue-600" : "text-gray-600 hover:text-gray-900"}`}
+          >
+            References
+          </Tabs.Trigger>
         </Tabs.List>
-        <Tabs.Content value="recomm" className="mt-4">
-          <RecommContent
+        <Tabs.Content value="consider" className="mt-4">
+          <ConsiderContent
             computedScore={computedScores["ehrcat"]}
             hasBleedingExclusions={hasBleedingExclusions}
             vteHistoryValue={vteHistoryValue}
             acValue={acValue}
           />
         </Tabs.Content>
-        {/* <Tabs.Content value="reference" className="mt-4">
-          <RecommReference />
-        </Tabs.Content> */}
+        <Tabs.Content value="guidelines" className="mt-4">
+          <ConsiderGuidelines />
+        </Tabs.Content>
+        <Tabs.Content value="references" className="mt-4">
+          <ConsiderReferences />
+        </Tabs.Content>
       </Tabs.Root>
       <div className="mt-4 grid grid-cols-3">
         <div className="flex justify-center items-center">
@@ -91,4 +101,4 @@ const RecommContainer: React.FC<RecommContainerProps> = ({ onPrevious }) => {
   );
 };
 
-export default RecommContainer;
+export default ConsiderContainer;

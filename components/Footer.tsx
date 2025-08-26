@@ -23,6 +23,7 @@ export default function FooterComp() {
               <a
                 href="https://angli-lab.com/"
                 target="_blank"
+                rel="noopener"
                 className="underline-offset-4 underline"
               >
                 Ang Li Lab

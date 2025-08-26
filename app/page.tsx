@@ -1,12 +1,20 @@
-import { Suspense } from "react";
-import MainPage from "@/components/MainPage";
+"use client";
 
-const Page = () => {
+import {useEffect} from "react";
+import {useRouter} from "next/navigation";
+
+export default function RootRedirect() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/en");
+  }, [router]);
+
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <MainPage />
-    </Suspense>
+    <main className="p-6">
+      <noscript>
+        <a href="/en">Continue to English</a>
+      </noscript>
+    </main>
   );
-};
-
-export default Page;
+}

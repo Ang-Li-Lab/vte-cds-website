@@ -48,7 +48,7 @@ const RiskContainer: React.FC<RiskContainerProps> = ({ onNext }) => {
           </Tabs.Trigger>
           <Tabs.Trigger
             value="about-ehrcat"
-            className={`pb-2 ${currentTab === "about-ehrcat" ? "border-b-2 border-blue-600" : ""}`}
+            className={`pb-2 ${currentTab === "about-ehrcat" ? "border-b-2 border-blue-600 text-blue-600" : "text-gray-600 hover:text-gray-900"}`}
           >
             About EHR-CAT
           </Tabs.Trigger>

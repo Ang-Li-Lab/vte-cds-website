@@ -1,13 +1,13 @@
 import React from "react";
 
-interface RecommContentProps {
+interface ConsiderContentProps {
   computedScore: number;
   hasBleedingExclusions: boolean;
   vteHistoryValue: string | null;
   acValue: string | null;
 }
 
-const RecommContent: React.FC<RecommContentProps> = ({
+const ConsiderContent: React.FC<ConsiderContentProps> = ({
   computedScore = 0,
   hasBleedingExclusions,
   vteHistoryValue,
@@ -90,4 +90,4 @@ const RecommContent: React.FC<RecommContentProps> = ({
   else return <div></div>;
 };
 
-export default RecommContent;
+export default ConsiderContent;

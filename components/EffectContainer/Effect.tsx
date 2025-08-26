@@ -4,7 +4,8 @@ import React, { useCallback } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import { useAppStore } from "@/store/useAppStore";
 import EffectContent from "@/components/EffectContainer/EffectContent";
-import EffectReference from "@/components/EffectContainer/EffectReference";
+import EffectDetails from "@/components/EffectContainer/EffectDetails";
+import EffectReferences from "@/components/EffectContainer/EffectReferences";
 
 interface EffectContainerProps {
   onNext: () => void;
@@ -52,16 +53,22 @@ const EffectContainer: React.FC<EffectContainerProps> = ({
         <Tabs.List className="flex space-x-4 border-b">
           <Tabs.Trigger
             value="effect"
-            className={`pb-2 ${currentTab === "effect" ? "border-b-2 border-blue-600" : ""}`}
+            className={`pb-2 ${currentTab === "effect" ? "border-b-2 border-blue-600 text-blue-600" : "text-gray-600 hover:text-gray-900"}`}
           >
             Effect
           </Tabs.Trigger>
-          {/* <Tabs.Trigger
-            value="reference"
-            className={`pb-2 ${currentTab === "reference" ? "border-b-2 border-blue-600" : ""}`}
+          <Tabs.Trigger
+            value="details"
+            className={`pb-2 ${currentTab === "details" ? "border-b-2 border-blue-600 text-blue-600" : "text-gray-600 hover:text-gray-900"}`}
           >
-            Reference
-          </Tabs.Trigger> */}
+            Details
+          </Tabs.Trigger>
+          <Tabs.Trigger
+            value="references"
+            className={`pb-2 ${currentTab === "references" ? "border-b-2 border-blue-600 text-blue-600" : "text-gray-600 hover:text-gray-900"}`}
+          >
+            References
+          </Tabs.Trigger>
         </Tabs.List>
         <Tabs.Content value="effect" className="mt-4">
           <EffectContent
@@ -71,9 +78,12 @@ const EffectContainer: React.FC<EffectContainerProps> = ({
             acValue={acValue}
           />
         </Tabs.Content>
-        {/* <Tabs.Content value="reference" className="mt-4">
-          <EffectReference />
-        </Tabs.Content> */}
+        <Tabs.Content value="details" className="mt-4">
+          <EffectDetails />
+        </Tabs.Content>
+        <Tabs.Content value="references" className="mt-4">
+          <EffectReferences />
+        </Tabs.Content>
       </Tabs.Root>
       {/* <div className="mt-4 grid grid-cols-3">
         <div className="flex justify-center items-center">
