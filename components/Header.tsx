@@ -4,7 +4,7 @@ export default function HeaderComp() {
       <p className="text-2xl font-bold">
         Cancer Associated Venous Thromboembolism (VTE)
       </p>
-      <p className="text-xl">Decision Aid (0.0.3)</p>
+      <p className="text-xl">Decision Aid (1.0.0)</p>
     </header>
   );
 }

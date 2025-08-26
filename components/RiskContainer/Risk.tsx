@@ -3,6 +3,7 @@ import { useCallback, useEffect } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import RiskScore from "@/components/RiskContainer/RiskScore";
 import BleedingExclusion from "@/components/RiskContainer/BleedingExclusion";
+import AboutEhrCat from "@/components/RiskContainer/AboutEhrCat";
 
 interface RiskContainerProps {
   onNext: () => void;
@@ -45,12 +46,21 @@ const RiskContainer: React.FC<RiskContainerProps> = ({ onNext }) => {
           >
             Bleeding Exclusion
           </Tabs.Trigger>
+          <Tabs.Trigger
+            value="about-ehrcat"
+            className={`pb-2 ${currentTab === "about-ehrcat" ? "border-b-2 border-blue-600" : ""}`}
+          >
+            About EHR-CAT
+          </Tabs.Trigger>
         </Tabs.List>
         <Tabs.Content value="score">
           <RiskScore />
         </Tabs.Content>
         <Tabs.Content value="exclusion">
           <BleedingExclusion />
+        </Tabs.Content>
+        <Tabs.Content value="about-ehrcat" className="mt-4">
+          <AboutEhrCat />
         </Tabs.Content>
       </Tabs.Root>
       {/* <div className="mt-4 grid grid-cols-3">

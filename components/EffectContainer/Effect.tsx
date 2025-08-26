@@ -56,12 +56,12 @@ const EffectContainer: React.FC<EffectContainerProps> = ({
           >
             Effect
           </Tabs.Trigger>
-          <Tabs.Trigger
+          {/* <Tabs.Trigger
             value="reference"
             className={`pb-2 ${currentTab === "reference" ? "border-b-2 border-blue-600" : ""}`}
           >
             Reference
-          </Tabs.Trigger>
+          </Tabs.Trigger> */}
         </Tabs.List>
         <Tabs.Content value="effect" className="mt-4">
           <EffectContent
@@ -71,9 +71,9 @@ const EffectContainer: React.FC<EffectContainerProps> = ({
             acValue={acValue}
           />
         </Tabs.Content>
-        <Tabs.Content value="reference" className="mt-4">
+        {/* <Tabs.Content value="reference" className="mt-4">
           <EffectReference />
-        </Tabs.Content>
+        </Tabs.Content> */}
       </Tabs.Root>
       {/* <div className="mt-4 grid grid-cols-3">
         <div className="flex justify-center items-center">
