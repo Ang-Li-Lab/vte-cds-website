@@ -4,13 +4,26 @@ import React, { useMemo } from "react";
 import { useAppStore } from "@/store/useAppStore";
 import { bleedingCriteria } from "@/lib/bleedingExclusion";
 import ButtonGroup from "@/components/ButtonGroup";
+import { useTranslations } from "next-intl";
 
 const BleedingExclusion: React.FC = () => {
+  const t = useTranslations("RiskContainer");
   const { selectedValues, setSelectedValues } = useAppStore();
 
   const handleButtonClick = (criterionId: string, buttonId: string) => {
     setSelectedValues("bleeding", null, criterionId, buttonId);
   };
+
+  const localizedCriteria = bleedingCriteria.map((criterion) => ({
+    ...criterion,
+    buttons: criterion.buttons.map((b) => {
+      let translatedName = b.name;
+      if (b.name.toLowerCase() === "unknown") translatedName = t("unknown");
+      else if (b.name.toLowerCase() === "no") translatedName = t("no");
+      else if (b.name.toLowerCase() === "yes") translatedName = t("yes");
+      return { ...b, name: translatedName };
+    }),
+  }));
 
   const computeExclusionStatus = useMemo(() => {
     const paramValues = bleedingCriteria.map((criterion) => {
@@ -46,7 +59,7 @@ const BleedingExclusion: React.FC = () => {
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-200">
-          {bleedingCriteria.map((criterion) => (
+          {localizedCriteria.map((criterion) => (
             <tr key={criterion.id}>
               <td
                 className="py-2 text-left align-middle"

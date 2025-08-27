@@ -3,8 +3,10 @@
 import { useAppStore } from "@/store/useAppStore";
 import { riskCriteria } from "@/lib/riskCriteria";
 import ButtonGroup from "@/components/ButtonGroup";
+import { useTranslations } from "next-intl";
 
 const RiskScore: React.FC = () => {
+  const t = useTranslations("RiskContainer");
   const {
     selectedValues,
     setSelectedValues,
@@ -20,6 +22,25 @@ const RiskScore: React.FC = () => {
   ) => {
     setSelectedValues("risk", scoreName, criterionId, buttonId);
   };
+
+  const localizedCriteria = riskCriteria.map((c) => ({
+    ...c,
+    scores: Object.fromEntries(
+      Object.entries(c.scores).map(([scoreName, score]) => [
+        scoreName,
+        {
+          ...score,
+          buttons: score.buttons.map((b) => {
+            let translatedName = b.name;
+            if (b.name.toLowerCase() === "unknown") translatedName = t("unknown");
+            else if (b.name.toLowerCase() === "no") translatedName = t("no");
+            else if (b.name.toLowerCase() === "yes") translatedName = t("yes");
+            return { ...b, name: translatedName };
+          }),
+        },
+      ])
+    ),
+  }));
 
   const khoranaTotal =
     vteHistoryValue === "1" && acValue === "1"
@@ -48,7 +69,7 @@ const RiskScore: React.FC = () => {
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-200">
-          {riskCriteria.map((criterion) => (
+          {localizedCriteria.map((criterion) => (
             <tr key={criterion.id}>
               <td
                 className="py-2 text-left align-middle"

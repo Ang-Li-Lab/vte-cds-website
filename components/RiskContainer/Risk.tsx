@@ -1,5 +1,6 @@
 import { useAppStore } from "@/store/useAppStore";
 import { useCallback, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import * as Tabs from "@radix-ui/react-tabs";
 import RiskScore from "@/components/RiskContainer/RiskScore";
 import BleedingExclusion from "@/components/RiskContainer/BleedingExclusion";
@@ -11,6 +12,7 @@ interface RiskContainerProps {
 }
 
 const RiskContainer: React.FC<RiskContainerProps> = ({ onNext }) => {
+  const t = useTranslations("RiskContainer");
   const { currentTabs, setTab, generateShareableLink } = useAppStore();
   const containerName = "risk";
   const currentTab = currentTabs[containerName];
@@ -28,7 +30,7 @@ const RiskContainer: React.FC<RiskContainerProps> = ({ onNext }) => {
 
   return (
     <div className="bg-white rounded-lg p-6 shadow-md">
-      <h2 className="text-2xl font-semibold mb-4">Risk Stratification</h2>
+      <h2 className="text-2xl font-semibold mb-4">{t("mainTitle")}</h2>
       <Tabs.Root
         value={currentTab}
         onValueChange={handleTabChange}
@@ -39,25 +41,25 @@ const RiskContainer: React.FC<RiskContainerProps> = ({ onNext }) => {
             value="score"
             className={`pb-2 ${currentTab === "score" ? "border-b-2 border-blue-600 text-blue-600" : "text-gray-600 hover:text-gray-900"}`}
           >
-            Risk Score
+            {t("scoreTabTitle")}
           </Tabs.Trigger>
           <Tabs.Trigger
             value="exclusion"
             className={`pb-2 ${currentTab === "exclusion" ? "border-b-2 border-blue-600 text-blue-600" : "text-gray-600 hover:text-gray-900"}`}
           >
-            Bleeding Exclusion
+            {t("bleedTabTitle")}
           </Tabs.Trigger>
           <Tabs.Trigger
             value="about-ehrcat"
             className={`pb-2 ${currentTab === "about-ehrcat" ? "border-b-2 border-blue-600 text-blue-600" : "text-gray-600 hover:text-gray-900"}`}
           >
-            About EHR-CAT
+            {t("aboutTabTitle")}
           </Tabs.Trigger>
           <Tabs.Trigger
             value="references"
             className={`pb-2 ${currentTab === "references" ? "border-b-2 border-blue-600 text-blue-600" : "text-gray-600 hover:text-gray-900"}`}
           >
-            References
+            {t("refTabTitle")}
           </Tabs.Trigger>
         </Tabs.List>
         <Tabs.Content value="score">
