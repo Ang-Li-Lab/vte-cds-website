@@ -1,6 +1,11 @@
-import Link from "next/link";
+import {Link} from '@/i18n/navigation';
+import {use} from 'react';
+import {setRequestLocale} from 'next-intl/server';
 
-export default function TermsPage() {
+export default function TermsPage({params}) {
+  const {locale} = use(params);
+  setRequestLocale(locale);
+
   return (
     <div className="p-3 prose prose-neutral max-w-none dark:prose-invert">
       <div className="relative mb-4 flex items-center justify-center">

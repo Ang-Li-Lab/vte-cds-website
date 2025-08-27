@@ -31,7 +31,7 @@ const MainPage = () => {
   useEffect(() => {
     if (isInitialized && currentContainer && !hasAutoScrolled.current) {
       hasAutoScrolled.current = true;
-      const refs: Record<string, React.RefObject<HTMLDivElement>> = {
+      const refs: Record<string, React.RefObject<HTMLDivElement | null>> = {
         risk: riskRef,
         effect: effectRef,
         consider: considerRef,
@@ -43,7 +43,7 @@ const MainPage = () => {
   const handleScroll = useCallback(
     (section: string) => {
       setContainer(section);
-      const refs: Record<string, React.RefObject<HTMLDivElement>> = {
+      const refs: Record<string, React.RefObject<HTMLDivElement | null>> = {
         risk: riskRef,
         effect: effectRef,
         consider: considerRef,
