@@ -2,8 +2,12 @@ import {Link} from '@/i18n/navigation';
 import {use} from 'react';
 import {setRequestLocale} from 'next-intl/server';
 
-export default function TermsPage({params}) {
-  const {locale} = use(params);
+export default function TermsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = use(params);
   setRequestLocale(locale);
 
   return (

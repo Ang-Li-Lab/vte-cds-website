@@ -2,6 +2,7 @@
 
 import {useEffect} from "react";
 import {useRouter} from "next/navigation";
+import Link from "next/link";
 
 export default function RootRedirect() {
   const router = useRouter();
@@ -13,7 +14,7 @@ export default function RootRedirect() {
   return (
     <main className="p-6">
       <noscript>
-        <a href="/en">Continue to English</a>
+        <Link href="/en">Continue to English</Link>
       </noscript>
     </main>
   );
