@@ -75,6 +75,27 @@ const RiskReferences: React.FC = () => {
               </a>
               .
             </li>
+            <li>
+              Li A, et al. Validation of a Risk Score for Cancer-Associated Thrombosis 
+              Using Nationwide EHR Data.{" "}
+              <em>JAMA Netw Open</em>. 2025;8(11):e2544428. doi:{" "}
+              <a
+                href="https://doi.org/10.1001/jamanetworkopen.2025.44428"
+                target="_blank"
+                rel="noopener"
+              >
+                10.1001/jamanetworkopen.2025.44428
+              </a>
+              . PMID:{" "}
+              <a
+                href="https://pubmed.ncbi.nlm.nih.gov/41288979/"
+                target="_blank"
+                rel="noopener"
+              >
+                41288979
+              </a>
+              .
+            </li>
           </ul>
         </li>
         <li>

@@ -232,7 +232,7 @@ const EffectContent: React.FC<EffectContentProps> = ({
             gridClass="grid-cols-[64px,150px,64px]"
           />
         }
-        midR1={<ArrowContent label={vteRisk == null ? "" : "44% decrease"} iconSrc="/blue_arrow.png" />}
+        midR1={<ArrowContent label="" iconSrc="/blue_arrow.png" />}
         rightR1={
           <MetricContent
             iconSrc="/leg.png"
@@ -244,7 +244,7 @@ const EffectContent: React.FC<EffectContentProps> = ({
           />
         }
 
-        midR2={<ArrowContent label={vteRisk == null ? "" : "70% decrease"} iconSrc="/blue_arrow.png" />}
+        midR2={<ArrowContent label="" iconSrc="/blue_arrow.png" />}
         rightR2={
           <MetricContent
             iconSrc="/leg.png"
@@ -266,7 +266,7 @@ const EffectContent: React.FC<EffectContentProps> = ({
             gridClass="grid-cols-[64px,150px,64px]"
           />
         }
-        midR3={<ArrowContent label={hasBleedingExclusions ? "" : "96% increase"} iconSrc="/red_arrow.png" />}
+        midR3={<ArrowContent label="" iconSrc="/red_arrow.png" />}
         rightR3={
           <MetricContent
             iconSrc="/brain.png"
@@ -288,7 +288,7 @@ const EffectContent: React.FC<EffectContentProps> = ({
             gridClass="grid-cols-[64px,150px,64px]"
           />
         }
-        midR4={<ArrowContent label={hasBleedingExclusions ? "" : "28% increase"} iconSrc="/red_arrow.png" />}
+        midR4={<ArrowContent label="" iconSrc="/red_arrow.png" />}
         rightR4={
           <MetricContent
             iconSrc="/finger.png"

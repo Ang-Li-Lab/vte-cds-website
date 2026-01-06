@@ -1,24 +1,19 @@
 import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
 import { useTranslations } from "next-intl";
-import LocaleSwitcher from "@/components/LocaleSwitcher";
 
 export default function HeaderComp() {
   const t = useTranslations("Header");
 
   return (
     <header className="fixed top-0 left-0 right-0 h-16 border-b-4 border-customBlue border-solid z-50 bg-gray-200">
-      <div className="h-full w-full px-3 grid grid-cols-[1fr,auto,1fr] items-center gap-3">
+      <div className="h-full w-full px-3 grid grid-cols-[1fr,1fr] items-center gap-3">
         <div className="min-w-0">
           <p className="text-2xl font-bold leading-tight truncate">
             Cancer Associated Venous Thromboembolism (VTE)
           </p>
           <p className="text-xl leading-tight truncate">
-            {t("title")} <span className="opacity-70">(1.0.0)</span>
+            {t("title")} <span className="opacity-70">(1.0.1)</span>
           </p>
-        </div>
-
-        <div className="justify-self-center">
-          <LocaleSwitcher />
         </div>
 
         <div className="text-sm text-gray-700 text-right leading-tight min-w-0">
