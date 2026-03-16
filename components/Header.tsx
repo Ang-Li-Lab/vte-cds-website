@@ -12,7 +12,7 @@ export default function HeaderComp() {
             Cancer Associated Venous Thromboembolism (VTE)
           </p>
           <p className="text-xl leading-tight truncate">
-            {t("title")} <span className="opacity-70">(1.0.1)</span>
+            {t("title")} <span className="opacity-70">(1.0.2)</span>
           </p>
         </div>
 

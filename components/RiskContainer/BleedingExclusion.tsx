@@ -37,7 +37,7 @@ const BleedingExclusion: React.FC = () => {
 
     if (paramValues.includes("1")) {
       return { text: "Excluded", className: "text-red-500" };
-    } else if (paramValues.includes("9")) {
+    } else if (paramValues.includes("99")) {
       return { text: "Unknown Exclusion", className: "text-gray-500" };
     } else {
       return { text: "Not Excluded", className: "text-black" };
